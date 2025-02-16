@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { ChargerInstallationForm } from "../page-objects/ChargerInstallationForm";
+import { ChargerInstallationForm } from "../page-objects/chargerInstallationForm";
 
 test.describe("Charge point installation form test cases", () => {
   let chargerInstallationForm: ChargerInstallationForm;
