@@ -20,6 +20,7 @@ export class ChargerInstallationForm {
 
   //define the methods to interact with the charger installation form
 
+  //function to add a new serial number and assert if it has been added successfully
   async addSerialNumber(): Promise<void> {
     const serialNumber = generateRandomChargerSerial();
     const count = await this.page.locator(".list-text").count();
@@ -31,6 +32,8 @@ export class ChargerInstallationForm {
     console.log(`Added serial number: ${serialNumber}`);
   }
 
+  //function to delete ONLY the last serial number from added serials and assert that it has been deleted
+  //by checking that the serial chargers count has been decreased by 1
   async deleteLastSerialNumber(): Promise<void> {
     const count = await this.page.locator(".list-text").count();
     if (count > 0) {
@@ -40,6 +43,7 @@ export class ChargerInstallationForm {
     console.log("Deleted the last serial number");
   }
 
+  //a function to delete all saved charger serials and check if everything is deleted
   async deleteAllSerialNumbers(): Promise<void> {
     while (await this.deleteButton.nth(0).isVisible()) {
       await this.deleteButton.nth(0).click();
@@ -47,11 +51,13 @@ export class ChargerInstallationForm {
     expect(await this.chargersList.count()).toBe(0);
     console.log("Deleted all serial numbers");
   }
-
+  // A function to get the count of all avaialbe serial numbers
   async getSerialsCount(): Promise<number> {
     return await this.page.locator(".list-text").count();
   }
 
+  //A negative scenario to see what happens when you only press the add button without entering any serials
+  //And then assert that the empty serial has not been added
   async addEmptycharger(): Promise<void> {
     await this.addButton.click();
     console.log(
