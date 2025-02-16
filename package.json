@@ -1,0 +1,24 @@
+{
+  "name": "qa-automation-task",
+  "workspaces": [
+    "packages/server",
+    "packages/web-app"
+  ],
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run start --workspace=web-app | npm run start --workspace=server",
+    "e2e:chrome": "playwright test --config=playwright.config.ts --project=chromium",
+    "e2e:firefox": "playwright test --config=playwright.config.ts --project=firefox",
+    "e2e:webkit": "playwright test --config=playwright.config.ts --project=webkit",
+    "e2e": "playwright test --config=playwright.config.ts",
+    "api:chrome": "playwright test --config=api.config.ts --project=chromium "
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.4"
+  }
+}
