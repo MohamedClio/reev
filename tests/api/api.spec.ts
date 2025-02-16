@@ -5,7 +5,7 @@ test.describe("Charge Point API Tests", () => {
   // Base URL for the API
   const baseUrl = "http://localhost:3001";
 
-  // Test for adding a charge serial
+  // Test for adding a charge serial and asserting that the responce is returning correct 201
   test("should create a charge point successfully", async ({ page }) => {
     // Step 1: Create a charge serial
     const response = await page.request.post(`${baseUrl}/charge-point`, {
@@ -16,6 +16,7 @@ test.describe("Charge Point API Tests", () => {
     expect(response.status()).toBe(201);
   });
 
+  // Test for deleting a charging serial and asserting the correct responce is returned 204
   test("should be able to delete a charge serial", async ({ page }) => {
     // Step 1: Create a charge serial
     const response = await page.request.post(`${baseUrl}/charge-point`, {
